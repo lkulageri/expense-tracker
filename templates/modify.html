@@ -1,0 +1,25 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+      {% if ExpensesAdded %}
+        <h1>Thank you!</h1>
+      {% else %}
+        <h3>Please update/delete your expense</h3>
+        
+          <li><a class="navbar-link" href="{% url 'expenses:itemupdate' p_k=instance.p_k %}">Update Expenses</a></li>  
+          <li><a class="navbar-link" href="{% url 'expenses:itemdelete' p_k=instance.p_k %}">Delete Expenses</a></li>
+        
+        
+        
+
+          
+        
+        
+        
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

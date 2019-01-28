@@ -1,0 +1,20 @@
+{% extends "home.html" %}
+{% load staticfiles %}
+
+{% block body_block %}
+  <div class="container">
+    <div class="jumbotron">
+      {% if ExpensesAdded %}
+        <h1>Thank you!</h1>
+      {% else %}
+        <h3>Please add your expenses</h3>
+<form enctype="multipart/form-data" method="POST">
+          {% csrf_token %}
+          {{ ExpenseUploadForm.as_p }}
+          <input type="submit" name="" value="Submit">
+        </form>
+        
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}
