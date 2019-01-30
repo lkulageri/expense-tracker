@@ -20,7 +20,7 @@ def __str__(self):
   return self.user.username
 
 class Product(models.Model):
-    p_k = models.IntegerField(primary_key=True)
+    p_k = models.AutoField(primary_key=True)
     item= models.TextField(max_length=2000)
     price= models.DecimalField(max_digits=10, decimal_places=2)
     image = models.ImageField(upload_to = 'static/expenses/',null=True, blank=True)
