@@ -24,6 +24,7 @@
    
 
     </form>
+    {% if query_results %}
     <h3>Expenses Added (To Update/Delete Expenses click on ItemName)</h3>
     
     
@@ -61,6 +62,8 @@
   {% if total_expenses %}
     <p>Total Expenses: {{ total_expenses }}</p>
   {% endif %}
+  {% else %}
+      <p>No Items Found</p>
   </div>
 </div>
 
