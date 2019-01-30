@@ -113,7 +113,7 @@ def add(request):
 def viewlist(request):
     query=request.GET.get("q")
     order_column=request.GET.get("o") or "p_k"
-    query_results = Product.objects.all().order_by(Lower("%s"% order_column))
+    query_results = Product.objects.all().order_by("%s"% order_column)
     if query:
         queryset_list = query_results.filter(
             Q(item__icontains=query) |
