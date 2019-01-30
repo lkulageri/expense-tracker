@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'se=irt2@jc+vxornv#romdj!=x)x+51%g#4ad5loev9mxe2njl'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'expenseportal.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'expenseportal.herokuapp.com',"expensetrackweb.herokuapp.com"]
 
 # Application definition
 
