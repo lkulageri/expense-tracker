@@ -4,17 +4,19 @@
 
 {% block body_block %}
 
+<div class="container">
+    <div class="jumbotron">
+
         <head>
-        <h3>Expenses Added </h3>
+        <h3>Search </h3>
         <form method='GET' action=''>
-        <input type='text' name='q' placeholder='Search Items' values='{{ request.GET.q }}' />
+        <input type='text' name='q' placeholder='Search by item or price' values='{{ request.GET.q }}' />
         <input type='submit' value='Search'/>
     
         
         </head>
 
-<div class="container">
-  <div class="jumbotron">
+
     
     
     
@@ -22,7 +24,9 @@
    
 
     </form>
-
+    <h3>Expenses Added (To Update/Delete Expenses click on ItemName)</h3>
+    
+    
     <table width="700">
       <tr>
           <!--<th scope="col"><a href="?o=p_k">SerialNo</a></th>-->
@@ -31,7 +35,9 @@
           <th scope="col"><a href="?o=price">Price</a></th>
           <th scope="col"><a href="?o=created_date">CreationDate</a></th>
       </tr>
+      
       {% for product in query_results %}
+      {% if product %}
       <tr> 
           <!--<td>{{ product.p_k }}</td>-->
           <td><a href='/expenses/{{ product.p_k }}/modify/'>{{ product.item }}</a></td>
@@ -47,6 +53,9 @@
           <td>{{ product.price }}</td>
           <td>{{ product.created_date }}</td>
       </tr>
+      {% else %}
+        <p> No Item found</p>
+      {% endif %}
       {% endfor %}
   </table>
   {% if total_expenses %}

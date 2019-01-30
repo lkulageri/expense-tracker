@@ -79,7 +79,15 @@ def user_login(request):
 
 @login_required
 def home(request):
-    return render(request,'home.html')
+    query_results = Product.objects.all()
+    total = 0
+    for prod in query_results:
+        total+=prod.price
+    context={
+            "query_results" : query_results,
+            "total_expenses":total
+        }
+    return render(request,'home.html',context)
 
 @login_required
 def add(request):
@@ -91,7 +99,7 @@ def add(request):
             #p= Product.object.get(pk=item_id)
             item = expense_form.cleaned_data.get('item')
             price = expense_form.cleaned_data.get('price')
-            image = expense_form.cleaned_data.get('image')
+            #image = expense_form.cleaned_data.get('image')
             #p.save()
 
             return HttpResponseRedirect(reverse('expenses:viewlist'))
@@ -111,9 +119,14 @@ def viewlist(request):
             Q(item__icontains=query) |
             Q(price__icontains=query)
             ).distinct()
-        context={
-            "query_results":queryset_list,
-        }
+        if queryset_list:
+            context={
+                "query_results":queryset_list,
+            }
+        else :
+            print("No item found")
+            return render(request,'search.html')
+        
     else:
         total = 0
         for prod in query_results:
@@ -144,8 +157,8 @@ def itemupdate(request, p_k=None):
 @login_required
 def itemdelete(request, p_k=None):
     item= get_object_or_404(Product, p_k=p_k)    
-    item.delete()
-    print(item)
+    if item.delete():
+        return HttpResponseRedirect(reverse('expenses:viewlist'))
     return render(request, 'item_confirm_delete.html',{'item':item})
 
 @login_required
