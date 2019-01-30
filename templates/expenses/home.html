@@ -25,6 +25,7 @@
     
     {% block body_block %}
     <h3>Hello {{ user.username }}, Welcome to Expense Tracker</h3>
+    {% if query_results %}
     <p>Your Total Expenses: {{ total_expenses }}</p>
     <table width="300">
         <tr>
@@ -41,6 +42,7 @@
           </tr>
     
     {% endfor %}
+    {% endif %}
     </table>
     {% endblock %}
     </div>
