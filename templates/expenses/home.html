@@ -41,9 +41,12 @@
           
           </tr>
     
-    {% endfor %}
-    {% endif %}
+        {% endfor %}
     </table>
+    {% else %}
+      <p>No Items added</p>
+    {% endif %}
+    
     {% endblock %}
     </div>
   </body>
